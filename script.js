@@ -43,35 +43,35 @@ for (let i = 0; i < 24; i++) {
         setTimeout(() => {
             img.style.transform = 'scaleX(1)'
             img.src = images[i]
-        }, 300);
-        console.log(pair[0], img, pair[0] === img);
-        if (pair[0] !== img) {
-            pair.push(img)
-        }
-        console.log(pair);
-        if (pair.length == 2) {
-            attemptsCounter++
-            attempts.innerHTML = 'attempts: ' + attemptsCounter 
-            if (pair[0].src == pair[1].src) {
-                pair = []
+            console.log(pair[0], img, pair[0] === img);
+            if (pair[0] !== img) {
+                pair.push(img)
             }
-            else {
-                cards.style.pointerEvents = 'none'
-                setTimeout(() => {
-                    pair[0].style.transform = 'scaleX(0)'
-                    pair[1].style.transform = 'scaleX(0)'
+            console.log(pair[0], pair[1]);
+            if (pair.length == 2) {
+                attemptsCounter++
+                attempts.innerHTML = 'attempts: ' + attemptsCounter 
+                if (pair[0].src == pair[1].src) {
+                    pair = []
+                }
+                else {
+                    cards.style.pointerEvents = 'none'
                     setTimeout(() => {
-                        pair[0].style.transform = 'scaleX(1)'
-                        pair[0].src = 'download (1).jfif'
-                        pair[1].style.transform = 'scaleX(1)'
-                        pair[1].src = 'download (1).jfif'
-                        cards.style.pointerEvents = 'auto'
-                        pair = []
-                    }, 300);
-
-                }, 1000);
+                        pair[0].style.transform = 'scaleX(0)'
+                        pair[1].style.transform = 'scaleX(0)'
+                        setTimeout(() => {
+                            pair[0].style.transform = 'scaleX(1)'
+                            pair[0].src = 'download (1).jfif'
+                            pair[1].style.transform = 'scaleX(1)'
+                            pair[1].src = 'download (1).jfif'
+                            cards.style.pointerEvents = 'auto'
+                            pair = []
+                        }, 300);
+    
+                    }, 1000);
+                }
             }
-        }
+        }, 300);
     }
 }
 
