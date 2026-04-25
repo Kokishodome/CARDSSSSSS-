@@ -3,7 +3,9 @@ let pair = []
 let attempts = document.getElementById('attempts')
 let attemptsCounter = 0
 let goodLuck = document.getElementById('goodLuck')
-let images = ['stop.jfif',
+let tryAgain = document.getElementById('tryAgain')
+let images = [
+    'blackBlack.jfif',
     'sixseven.jfif',
     'cat.jfif',
     "lala.jfif",
@@ -15,7 +17,7 @@ let images = ['stop.jfif',
     'download.jfif',
     'skull necklace.jfif',
     'twtwocute.jfif',
-    'stop.jfif',
+    'blackBlack.jfif',
     'sixseven.jfif',
     'cat.jfif',
     "lala.jfif",
@@ -29,13 +31,33 @@ let images = ['stop.jfif',
     'twtwocute.jfif'
 ]
 
+tryAgain.onclick = function () {
+    images.sort(function () {
+        return Math.random() - 0.5
+    })
+    let playingCards = document.getElementsByClassName('card')
+    for (let i = 0; i < 24; i++) {
+        playingCards[i].style.transform = 'scaleX(0)'
+        setTimeout(() => {
+            playingCards[i].style.transform = 'scaleX(1)'
+            playingCards[i].src = 'download (1).jfif'
+            // cards.style.pointerEvents = 'auto'
+        }, 300);
+    }
+    attemptsCounter = 0
+    attempts.innerHTML = 'attempts: ' + attemptsCounter
+}
+
 images.sort(function () {
     return Math.random() - 0.5
 })
 
 
+
+
 for (let i = 0; i < 24; i++) {
     let img = document.createElement('img')
+    img.className = 'card'
     img.src = 'download (1).jfif'
     cards.appendChild(img)
     img.onclick = function () {
@@ -50,7 +72,7 @@ for (let i = 0; i < 24; i++) {
             console.log(pair[0], pair[1]);
             if (pair.length == 2) {
                 attemptsCounter++
-                attempts.innerHTML = 'attempts: ' + attemptsCounter 
+                attempts.innerHTML = 'attempts: ' + attemptsCounter
                 if (pair[0].src == pair[1].src) {
                     pair = []
                 }
@@ -67,7 +89,7 @@ for (let i = 0; i < 24; i++) {
                             cards.style.pointerEvents = 'auto'
                             pair = []
                         }, 300);
-    
+
                     }, 1000);
                 }
             }
@@ -75,4 +97,4 @@ for (let i = 0; i < 24; i++) {
     }
 }
 
-// make sure that once the first atempt is made, put on the site to make it visible :)
+// there is one image that repeats, find it and change it to another :)
